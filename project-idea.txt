@@ -1,0 +1,10 @@
+What we already have: 
+
+1. Car can drive.
+2. Car can detect obstacles and objects.
+3. Car can follow a line.
+
+Goals:
+
+1. Minimum goal: Car can follow checkpoints.
+2. Next goal: Follow traffic signs (maybe a traffic light too?).
