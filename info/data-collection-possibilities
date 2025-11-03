@@ -1,0 +1,11 @@
+1. Drive car around manually and take photos
+
+2. Drive car manually and record video
+    a. Use sampling at 5 fps to retrieve images - keep it low to avoid similar images
+    b. Use higher fps for detailed analysis - risks of similar images
+
+
+After that is done, we can consider:
+1. Save images with timestamp and "driver's activity" (turning, staying still, going straight, etc..)
+2. Data augmentation - adding artificial shifts and rotations
+    to teach the network how to recover from a poor position or orientation
