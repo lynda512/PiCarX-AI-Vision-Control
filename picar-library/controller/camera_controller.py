@@ -1,5 +1,5 @@
-from vision.vision_system import VisionSystem
 from status.action import Action
+from vision.vision_system import VisionSystem
 
 class CameraController:
     """Controller for managing camera in PiCarX-AI-vision-Control."""
@@ -10,7 +10,6 @@ class CameraController:
         """
         Make driving decisions based on vision model predictions
 
-
         Returns:
             Action: The action decided based on vision prediction.
         """
@@ -18,5 +17,4 @@ class CameraController:
 
         # TODO Decision-making logic can be implemented here
         # prediction value converted into action
-
         return Action
