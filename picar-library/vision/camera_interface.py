@@ -10,6 +10,10 @@ class CameraInterface:
         """Return latest image frame from camera."""
         return self.camera.capture_frame()
 
+    def get_video(self):
+        """Return video stream from camera."""
+        return self.camera.capture_video()
+
     def release(self):
         """Release camera hardware."""
         self.camera.release()

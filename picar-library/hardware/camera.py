@@ -1,22 +1,38 @@
+import os
+from time import strftime, localtime, time
+
+from vilib import Vilib
+
+
 class Camera:
     """Camera hardware interface."""
 
     def __init__(self, resolution=(640, 480)):
         self.resolution = resolution
-        # Initialize camera hardware here (e.g., OpenCV VideoCapture)
-        # self.cap = cv2.VideoCapture(0)
-        # self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, resolution[0])
-        # self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, resolution[1])
+        Vilib.camera_start(vflip=False, hflip=False)
+        Vilib.display(local=True, web=True)
 
     def capture_frame(self):
         """Capture a single frame from the camera."""
-        # TODO Implement actual frame capture logic
+        _time = strftime('%Y-%m-%d-%H-%M-%S', localtime(time()))
+        name = 'frame_%s' % _time
 
-        # ret, frame = self.cap.read()
-        # if not ret:
-        #     raise RuntimeError("Failed to capture image from camera")
-        # return frame
-        pass  # Placeholder for actual implementation
+        path = "./data_samples/images"
+        Vilib.take_photo(name, path)
+        print('photo save as %s%s.jpg' % (path, name))
+
+    def capture_video(self):
+        """Capture a video from the camera."""
+        path = "./data_samples/videos/"
+        Vilib.rec_video_set["path"] = path
+
+        video_name = strftime("%Y-%m-%d-%H.%M.%S", localtime())
+        Vilib.rec_video_set["name"] = f"video_{video_name}"
+        # start record
+        Vilib.rec_video_run()
+        Vilib.rec_video_start()
+        print('video recording started: %s%s.h264' % (path, video_name))
+
 
     def release(self):
         """Release the camera hardware."""
