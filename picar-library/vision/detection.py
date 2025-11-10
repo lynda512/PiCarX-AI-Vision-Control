@@ -16,14 +16,3 @@ class CheckpointDetector:
         # Example: use contours or ArUco markers
         # detections.append({...})
         return detections
-
-
-class ObjectDetector:
-    """Detects obstacles or target objects for stop condition."""
-
-    def __init__(self, model=None):
-        self.model = model
-
-    def detect(self, frame):
-        """Return list of detected objects with bounding boxes."""
-        return []

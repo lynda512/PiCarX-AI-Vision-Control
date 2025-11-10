@@ -1,20 +1,29 @@
-from status.action import Action
+from hardware.camera import Camera
+from status.prediction import Prediction
 from vision.vision_system import VisionSystem
 
 class CameraController:
     """Controller for managing camera in PiCarX-AI-vision-Control."""
     def __init__(self):
         self.vision = VisionSystem()
+        self.camera = Camera()
 
-    def predict_action(self):
+    def get_camera_image(self):
         """
-        Make driving decisions based on vision model predictions
+        Capture a real time image from the camera.
 
         Returns:
-            Action: The action decided based on vision prediction.
+            frame: The captured image frame.
         """
-        prediction = self.vision.get_prediction()
+        return self.camera.get_frame()
 
-        # TODO Decision-making logic can be implemented here
-        # prediction value converted into action
-        return Action
+    def make_prediction(self) -> Prediction:
+        """
+        Takes a camera image and passes it to the vision system as input to the model.
+
+        Returns:
+            prediction: Prediction object containing frame and detected checkpoints.
+        """
+        frame = self.get_camera_image()
+
+        return self.vision.make_prediction(frame)

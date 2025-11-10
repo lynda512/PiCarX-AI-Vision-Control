@@ -1,30 +1,42 @@
-from .camera_interface import CameraInterface
-from .preprocessing import preprocess_image
-from .detection import CheckpointDetector, ObjectDetector
+from detection import CheckpointDetector
+from status.prediction import Prediction
+
 
 class VisionSystem:
     """Top-level vision controller that integrates capture and detection."""
 
     def __init__(self):
-        self.camera = CameraInterface()
         self.checkpoint_detector = CheckpointDetector()
-        self.object_detector = ObjectDetector()
 
-    def get_prediction(self):
-        """Acquire image, preprocess, and run detection."""
-        frame = self.camera.get_image()
+    def make_prediction(self, frame):
+        """
+        Process the image frame and feed it to the model.
+
+        Args:
+            frame: The raw image frame from the camera.
+
+        Returns:
+            prediction: Prediction object containing frame and detected checkpoints.
+        """
         if frame is None:
-            return {"status": "no_frame"}
+            return {"status": "no_frame"} #TODO implement better handler
 
-        processed = preprocess_image(frame)
+        # TODO passes the frame through preprocessing steps and feed the result to the model
+        processed = self.preprocess_image(frame)
         checkpoints = self.checkpoint_detector.detect(processed)
-        objects = self.object_detector.detect(processed)
 
-        return {
-            "checkpoints": checkpoints,
-            "objects": objects,
-        }
+        prediction = Prediction(frame, checkpoints)
+        return prediction
 
-    def shutdown(self):
-        """Gracefully release hardware."""
-        self.camera.release()
+    def preprocess_image(self, frame):
+        """
+        Preprocess the image frame for model input.
+
+        Args:
+            frame: The raw image frame from the camera.
+
+        Returns:
+            processed_frame: The preprocessed image frame.
+        """
+        processed_frame = frame
+        return processed_frame

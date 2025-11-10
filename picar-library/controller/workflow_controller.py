@@ -9,7 +9,7 @@ class WorkflowController:
         self.navigation_controller = NavigationController()
 
     def start_workflow(self):
-        """Start the workflow by getting predicted action from CameraController and passing it to NavigationController."""
-        predicted_action = self.camera_controller.predict_action()
-        # TODO Can integrate action control manager for navigation controller input (IF-SWITCH etc...)
-        self.navigation_controller.perform_action(predicted_action)
+        """Start the workflow by getting prediction from CameraController and passing it to NavigationController."""
+        prediction = self.camera_controller.make_prediction()
+
+        self.navigation_controller.perform_action(prediction)

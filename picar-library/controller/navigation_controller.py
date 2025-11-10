@@ -1,5 +1,6 @@
 from navigation.navigation import Navigation
 from status.action import Action
+from status.prediction import Prediction
 
 
 class NavigationController:
@@ -7,35 +8,10 @@ class NavigationController:
     def __init__(self):
         self.navigation = Navigation()
 
-    def perform_action(self, action: Action):
-        """
-            Performs action according to the predicted action
-
+    def perform_action(self, prediction: Prediction):
+        """ Takes a prediction and passes it to the navigation system to perform the correspondent action
         Args:
-            action: Action to perform
+            prediction: Prediction object containing frame and detected checkpoints.
         """
-
-        if action == Action.FORWARD:
-            self.navigation.forward()
-        elif action == Action.BACKWARD:
-            self.navigation.backward()
-        elif action == Action.LEFT:
-            angle = self.angle_retrieval(action)
-            self.navigation.turn(Action.LEFT, angle)
-        elif action == Action.RIGHT:
-            angle = self.angle_retrieval(action)
-            self.navigation.turn(Action.RIGHT, angle)
-        self.navigation.stop()
-
-    def angle_retrieval(self, action: Action):
-        """
-            Handler for steering angle prediction according to the given action
-
-        Args:
-            action: Action to perform
-        """
-        angle = 10
-
-        # TODO implement how to handle angle creation here
-
-        return angle
+        action = self.navigation.decide_action(prediction)
+        self.navigation.perform_action(action, prediction)
