@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 3
+names: ['A', 'B', 'C']
+
+roboflow:
+  workspace: picar-x
+  project: final-picarx-lo0wb
+  version: 3
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/picar-x/final-picarx-lo0wb/dataset/3

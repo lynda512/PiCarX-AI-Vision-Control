@@ -9,7 +9,7 @@ class YOLOModel:
         self.model12 = YOLO(model_path12)
         self.model12.info()
         self.epochs = epochs
-        self.data_path = 'picar-library/models/yolo_dataset/data.yaml'
+        self.data_path = 'picar-library/models/datasets/yolo_dataset/data.yaml'
 
     def run_training(self):
         """
