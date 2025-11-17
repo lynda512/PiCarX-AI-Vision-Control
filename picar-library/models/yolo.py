@@ -20,7 +20,7 @@ class YOLOModel:
         print("\n--- Starting YOLOv8 Training ---")
         self.model8.train(
             data=self.data_path,
-            epochs=5,
+            epochs=20,
             imgsz=640,
             batch=5,
             name='yolov8n-picar'
@@ -30,7 +30,7 @@ class YOLOModel:
         print("\n--- Starting YOLOv12 Training ---")
         self.model12.train(
             data=self.data_path,
-            epochs=5,
+            epochs=20,
             imgsz=640,
             batch=5,
             name='yolo12n-picar'
