@@ -3,12 +3,12 @@ from ultralytics import YOLO
 class YOLOModel:
     """A class to handle YOLO model loading, training and prediction."""
 
-    def __init__(self, model_path='yolov8n.pt', model_path12='yolo12n.pt'):
+    def __init__(self, model_path='yolov8n.pt', model_path12='yolo12n.pt', epochs=10):
         self.model8 = YOLO(model_path)
         self.model8.info()
         self.model12 = YOLO(model_path12)
         self.model12.info()
-
+        self.epochs = epochs
         self.data_path = 'picar-library/models/yolo_dataset/data.yaml'
 
     def run_training(self):
@@ -20,7 +20,7 @@ class YOLOModel:
         print("\n--- Starting YOLOv8 Training ---")
         self.model8.train(
             data=self.data_path,
-            epochs=20,
+            epochs=self.epochs,
             imgsz=640,
             batch=5,
             name='yolov8n-picar'
@@ -30,10 +30,38 @@ class YOLOModel:
         print("\n--- Starting YOLOv12 Training ---")
         self.model12.train(
             data=self.data_path,
-            epochs=20,
+            epochs=self.epochs,
             imgsz=640,
             batch=5,
             name='yolo12n-picar'
+        )
+        print("--- YOLOv12 Training Complete ---")
+
+    def run_training_on_apple_silicon(self):
+        """
+        Trains both models on Mac (Apple Silicon). The model objects in memory
+        (self.model8, self.model12) will be the trained models.
+        """
+
+        print("\n--- Starting YOLOv8 Training ---")
+        self.model8.train(
+            data=self.data_path,
+            epochs=self.epochs,
+            imgsz=640,
+            batch=5,
+            name='yolov8n-picar',
+            device='mps'
+        )
+        print("--- YOLOv8 Training Complete ---")
+
+        print("\n--- Starting YOLOv12 Training ---")
+        self.model12.train(
+            data=self.data_path,
+            epochs=self.epochs,
+            imgsz=640,
+            batch=5,
+            name='yolo12n-picar',
+            device='mps'
         )
         print("--- YOLOv12 Training Complete ---")
 
