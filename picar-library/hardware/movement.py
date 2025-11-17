@@ -13,24 +13,24 @@ class Movement:
         self.picar.stop()
 
 
-    def forward(self):
+    def forward(self, distance=80):
         """Moves the car forward"""
         print("Moving forward")
         self.picar.set_dir_servo_angle(0)
-        self.picar.forward(80)
+        self.picar.forward(distance)
 
-    def backward(self):
+    def backward(self, distance=80):
         """Moves the car backward"""
         print("Moving backward")
         self.picar.set_dir_servo_angle(0)
-        self.picar.backward(80)
+        self.picar.backward(distance)
 
-    def turn(self, direction, angle):
+    def turn(self, direction, angle, distance=80):
         """Turns the car in the specified direction by the given angle"""
         print(f"Turning {direction} by {angle} degrees")
         if direction == Action.LEFT:
             self.picar.set_dir_servo_angle(-35)
-            self.picar.forward(80)
+            self.picar.forward(distance)
         elif direction == Action.RIGHT:
             self.picar.set_dir_servo_angle(35)
-            self.picar.forward(80)
+            self.picar.forward(distance)
