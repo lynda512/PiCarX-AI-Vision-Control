@@ -22,7 +22,7 @@ class YOLOModel:
             data=self.data_path,
             epochs=20,
             imgsz=640,
-            batch=5,
+            batch=10,
             name='yolov8n-picar'
         )
         print("--- YOLOv8 Training Complete ---")
@@ -32,7 +32,7 @@ class YOLOModel:
             data=self.data_path,
             epochs=20,
             imgsz=640,
-            batch=5,
+            batch=10,
             name='yolo12n-picar'
         )
         print("--- YOLOv12 Training Complete ---")

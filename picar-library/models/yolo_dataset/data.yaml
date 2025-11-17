@@ -7,7 +7,7 @@ names: ['A', 'B', 'C']
 
 roboflow:
   workspace: picar-x
-  project: picarx-3dxlh
+  project: final-picarx-lo0wb
   version: 1
   license: CC BY 4.0
-  url: https://universe.roboflow.com/picar-x/picarx-3dxlh/dataset/1
+  url: https://universe.roboflow.com/picar-x/final-picarx-lo0wb/dataset/1
