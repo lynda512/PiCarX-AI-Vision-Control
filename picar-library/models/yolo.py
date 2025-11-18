@@ -21,7 +21,7 @@ class YOLOModel:
         self.model8_augmented = YOLO(model_path)
         self.model12 = YOLO(model_path12)
         self.data_path_normal = 'picar-library/models/datasets/yolo_dataset/data.yaml'
-        self.data_path_augmented = 'picar-library/models/datasets/augmented_noised_yolo_dataset/augmented.yaml'
+        self.data_path_augmented = 'picar-library/models/datasets/augmented_noised_yolo_dataset/data.yaml'
         self.epochs = epochs
         self.batch_size = batch_size
 
