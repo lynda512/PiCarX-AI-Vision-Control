@@ -1,2 +1,5 @@
 .idea
 runs
+
+/picar-library/models/datasets/yolo_dataset/train/labels.cache
+/picar-library/models/datasets/yolo_dataset/valid/labels.cache
