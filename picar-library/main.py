@@ -1,4 +1,4 @@
-#from hardware.movement import Movement
+from hardware.movement import Movement
 import time
 from models.yolo import YOLOModel
 
@@ -29,22 +29,17 @@ if __name__=="__main__":
 
         device_input = int(input("1. Train on normal device\n2. Train on Apple Silicon\n"))
         epochs = int(input("Enter number of epochs for training (e.g., 10): "))
+        batch_size = int(input("Enter batch size for training (e.g., 32): "))
         
         if device_input == 2:
             # Training on Apple Silicon (Mac)
-            trainer = YOLOModel(epochs=epochs)
+            trainer = YOLOModel(epochs=epochs, batch_size=batch_size)
             trainer.run_training_on_apple_silicon()
         else:
             # Training on normal device (GPU/CPU)
-            trainer = YOLOModel(epochs=epochs)
-            trainer.run_training()
-
-        # 3. Check the performance of the models you just trained
+            trainer = YOLOModel(epochs=epochs, batch_size=batch_size)
+            trainer.run_training_yolo_dataset()
+            trainer.run_training_augmented_yolo_dataset()
     
-        print("\nTraining finished. Now checking performance...")
-        trainer.check_performance()
-
-        print("\nProcess complete.")
-        print("Your trained models (best.pt) and all charts (results.png)")
-        print("are saved in the 'runs/detect/' directory.")
+        print("\nTraining finished.")
 
